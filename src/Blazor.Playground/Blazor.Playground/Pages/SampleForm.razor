@@ -1,0 +1,43 @@
+﻿@page "/sampleform"
+
+<h3>SampleForm</h3>
+
+<div>
+    <p>Sample form with validations</p>
+</div>
+
+<EditForm EditContext="@editContext" OnValidSubmit="HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-3">Last name: </label>
+        <InputText id="firstName" class="form-control" @bind-Value="employee.FirstName" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private Blazor.Playground.Models.Employee employee = new Models.Employee();
+    private EditContext editContext;
+
+    protected override void OnInitialized()
+    {
+        editContext = new EditContext(employee);
+    }
+
+    private async Task HandleSubmit()
+    {
+        var isValid = editContext.Validate();
+
+        if (isValid)
+        {
+            //
+        }
+        else
+        {
+            //
+        }
+    }
+}
