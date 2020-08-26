@@ -1,6 +1,6 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<h3>Counter, Increments of @IncrementAmount</h3>
 
 <p>Current count: @currentCount</p>
 
@@ -9,8 +9,11 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    [Parameter]
+    public int IncrementAmount { get; set; } = 1;
+
+    void IncrementCount()
     {
-        currentCount++;
+        currentCount+=IncrementAmount;
     }
 }
