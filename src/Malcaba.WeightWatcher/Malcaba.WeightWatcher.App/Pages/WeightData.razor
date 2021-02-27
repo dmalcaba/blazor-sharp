@@ -1,0 +1,46 @@
+﻿@page "/weightdata"
+@inject HttpClient Http
+
+<h1>Weight Data</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (weightData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Weight (lbs.)</th>
+                <th>Weight (kg.)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var weight in weightData)
+            {
+                @foreach (var history in weight.WeightHistory)
+                {
+                    <tr>
+                        <td>@history.WeightDate.ToShortDateString()</td>
+                        <td>@history.WeightLbs</td>
+                        <td>@history.WeightKg</td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Model.PersonalWeight> weightData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        weightData = Repositories.WeightRepository.PersonalWeightData;
+    }
+}
