@@ -1,0 +1,28 @@
+﻿@page "/weightwatcher"
+
+@*<h3>WeightWatcher</h3>
+
+<button class="btn btn-primary" @onclick="UpdateMommy">Mommy</button>
+<button class="btn btn-primary" @onclick="UpdateDaddy">Daddy</button>*@
+
+<WeightData Name="Daddy" />
+
+@code {
+    private string _name = "Daddy";
+
+    void UpdateDaddy()
+    {
+        UpdateName("Daddy");
+    }
+
+    void UpdateMommy()
+    {
+        UpdateName("Mommy");
+    }
+
+    void UpdateName(string name)
+    {
+        _name = name;
+    }
+
+}
